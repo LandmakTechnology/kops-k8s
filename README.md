@@ -10,7 +10,7 @@ Setup Kubernetes (K8s) Cluster on AWS Using KOPS
 #!/bin/bash
 #1) Create Ubuntu EC2 instance in AWS
 
-#2) install AWSCLI
+2) install AWSCLI
 
  sudo apt update -y
  sudo apt install unzip wget -y
