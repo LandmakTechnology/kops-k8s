@@ -8,9 +8,9 @@ kops
 Setup Kubernetes (K8s) Cluster on AWS Using KOPS
 
 #!/bin/bash
-#1) Create Ubuntu EC2 instance in AWS
+# 1) Create Ubuntu EC2 instance in AWS
 
-2) install AWSCLI
+# 2) install AWSCLI
 
  sudo apt update -y
  sudo apt install unzip wget -y
@@ -20,7 +20,7 @@ Setup Kubernetes (K8s) Cluster on AWS Using KOPS
  sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
  
  
-#3) Install kops software on ubuntu instance:
+# 3) Install kops software on ubuntu instance:
 
  	#Install wget if not installed
  	sudo apt install wget -y
@@ -28,7 +28,7 @@ Setup Kubernetes (K8s) Cluster on AWS Using KOPS
  	sudo chmod +x kops-linux-amd64
  	sudo mv kops-linux-amd64 /usr/local/bin/kops
  
-#4) Install kubectl
+# 4) Install kubectl
 
  sudo curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
  sudo chmod +x ./kubectl
@@ -36,7 +36,7 @@ Setup Kubernetes (K8s) Cluster on AWS Using KOPS
  aws s3 mb s3://nubonglegah.k8.local
  aws s3 ls
 
-#5) Create an IAM role from AWS Console or CLI with below Policies.
+# 5) Create an IAM role from AWS Console or CLI with below Policies.
 
 	AmazonEC2FullAccess 
 	AmazonS3FullAccess
@@ -49,7 +49,7 @@ You Created. --> Save.
 
 
 
-#6) create an S3 bucket Execute below commond in KOPS Server use unique bucket name if you get bucket name exists error.
+# 6) create an S3 bucket Execute below commond in KOPS Server use unique bucket name if you get bucket name exists error.
 
 	aws s3 mb s3://nubonglegah.k8.local
 	aws s3 ls
@@ -69,12 +69,12 @@ You Created. --> Save.
  
     source .bashrc
 	
-#7) Create sshkeys before creating cluster
+# 7) Create sshkeys before creating cluster
 
     ssh-keygen
  
 
-#8) Create kubernetes cluster definitions on S3 bucket
+# 8) Create kubernetes cluster definitions on S3 bucket
 
 	kops create cluster --zones us-east-2c --networking weave --master-size t2.medium --master-count 1 --node-size t2.large --node-count=2 ${NAME}
 	
@@ -82,11 +82,11 @@ You Created. --> Save.
 
 	kops create secret --name ${NAME} sshpublickey admin -i ~/.ssh/id_rsa.pub
 
-#9) Create kubernetes cluser
+# 9) Create kubernetes cluser
 
 	 kops update cluster ${NAME} --yes
 
-#10) Validate your cluster(KOPS will take some time to create cluster ,Execute below commond after 3 or 4 mins)
+# 10) Validate your cluster(KOPS will take some time to create cluster ,Execute below commond after 3 or 4 mins)
 
 	   kops validate cluster
  
@@ -103,7 +103,7 @@ You Created. --> Save.
 ====================================================================================================
 
 
-13# IF you wan to SSH to Kubernates Master or Nodes Created by KOPS. You can SSH From KOPS_Server
+13 # IF you wan to SSH to Kubernates Master or Nodes Created by KOPS. You can SSH From KOPS_Server
 
 ssh  admin@<IPOrDNS>
 it above command  is not working
