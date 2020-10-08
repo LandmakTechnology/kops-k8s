@@ -54,9 +54,7 @@ You Created. --> Save.
 	aws s3 mb s3://class21.k8s.local
 	aws s3 ls
 	
-    ex:
-	# S3 bucket name should be unique across AWS
-	aws s3 mb s3://simonlegah.k8s.local    s3://nubong.k8s.local
+    ex: s3://nubong.k8s.local
      
 	Expose environment variable:
 
@@ -78,7 +76,6 @@ You Created. --> Save.
 
 	kops create cluster --zones us-east-2c --networking weave --master-size t2.medium --master-count 1 --node-size t2.large --node-count=2 ${NAME}
 	
-	kops create cluster --zones us-east-1e,zones us-east-2c --networking weave --master-size t2.medium --master-count 2 --node-size t2.micro --node-count=2 ${NAME}
 
 	kops create secret --name ${NAME} sshpublickey admin -i ~/.ssh/id_rsa.pub
 
