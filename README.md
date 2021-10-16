@@ -9,7 +9,7 @@
 
 2. kOPS SUPPORTS MULTIPLE CLOUD PROVIDERS
 
-3. Kops compete with managed kunbernestes services like EKS, AKS and GKE
+3. Kops compete with managed kubernestes services like EKS, AKS and GKE
 
 4. Kops is cheaper than the others.
 
@@ -24,7 +24,7 @@
 
 # 2) install AWSCLI
 
- sudo adduser admin
+ sudo adduser kops
  sudo echo "kops  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/kops
  sudo su - kops
  sudo apt update -y
@@ -39,7 +39,7 @@
 
  	#Install wget if not installed
  	sudo apt install wget -y
- 	sudo wget https://github.com/kubernetes/kops/releases/download/v1.16.1/kops-linux-amd64
+ 	sudo wget https://github.com/kubernetes/kops/releases/download/v1.22.0/kops-linux-amd64
  	sudo chmod +x kops-linux-amd64
  	sudo mv kops-linux-amd64 /usr/local/bin/kops
  
@@ -89,9 +89,8 @@ You Created. --> Save.
 
 # 8) Create kubernetes cluster definitions on S3 bucket
 
-	kops create cluster --zones us-east-2c --networking weave --master-size t2.medium --master-count 1 --node-size t2.large --node-count=2 ${NAME}
+	kops create cluster --zones us-east-2c --networking weave --master-size t2.medium --master-count 1 --node-size t2.medium --node-count=2 ${NAME}
 	
-
 	kops create secret --name ${NAME} sshpublickey admin -i ~/.ssh/id_rsa.pub
 
 # 9) Create kubernetes cluser
@@ -101,13 +100,14 @@ You Created. --> Save.
 # 10) Validate your cluster(KOPS will take some time to create cluster ,Execute below commond after 3 or 4 mins)
 
 	   kops validate cluster
- 
+
+# 11) connect to the master node
+    sh -i ~/.ssh/id_rsa ubuntu@ipAddress
+    ssh -i ~/.ssh/id_rsa ubuntu@3.90.203.23
 # 11) To list nodes
 
 	  kubectl get nodes 
-  
-  
-  
+ 
 # 12) To Delete Cluster
 
    kops delete cluster --name=${NAME} --state=${KOPS_STATE_STORE} --yes  
@@ -115,10 +115,8 @@ You Created. --> Save.
 ====================================================================================================
 
 
-13 # IF you wan to SSH to Kubernates Master or Nodes Created by KOPS. You can SSH From KOPS_Server
+13 # IF you want to SSH to Kubernetes Master or Nodes Created by KOPS. You can SSH From KOPS_Server
 
-ssh  admin@<IPOrDNS>
-it above command  is not working
-then execute
-ssh -i ~/.ssh/id_rsa admin@<IPOrDNS>
+sh -i ~/.ssh/id_rsa ubuntu@ipAddress
+ssh -i ~/.ssh/id_rsa ubuntu@3.90.203.23
   
