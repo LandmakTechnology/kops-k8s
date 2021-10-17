@@ -46,9 +46,13 @@
 # 4) Install kubectl
 
  sudo curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+ 
  sudo chmod +x ./kubectl
+ 
  sudo mv ./kubectl /usr/local/bin/kubectl
+ 
  aws s3 mb s3://nubonglegah.k8.local
+ 
  aws s3 ls
 
 # 5) Create an IAM role from AWS Console or CLI with below Policies.
