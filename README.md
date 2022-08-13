@@ -27,7 +27,7 @@
  sudo adduser kops
  sudo echo "kops  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/kops
  sudo su - kops
- ``
+ ```
  # 2a) install AWSCLI
  sudo apt update -y
  sudo apt install unzip wget -y
