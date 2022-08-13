@@ -23,7 +23,7 @@
 # 1) Create Ubuntu EC2 instance in AWS
 
 # 2) install AWSCLI
-
+`` sh
  sudo adduser kops
  sudo echo "kops  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/kops
  sudo su - kops
@@ -120,3 +120,4 @@ You Created. --> Save.
 sh -i ~/.ssh/id_rsa ubuntu@ipAddress
 ssh -i ~/.ssh/id_rsa ubuntu@3.90.203.23
   
+``
