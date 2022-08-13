@@ -28,14 +28,16 @@
  sudo echo "kops  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/kops
  sudo su - kops
  ```
- # 2a) install AWSCLI
+ 
+ ## 2a) install AWSCLI
+ ``sh
  sudo apt update -y
  sudo apt install unzip wget -y
  sudo curl https://s3.amazonaws.com/aws-cli/awscli-bundle.zip -o awscli-bundle.zip
  sudo apt install unzip python -y
  sudo unzip awscli-bundle.zip
  sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
- 
+ ```
  
 # 3) Install kops software on ubuntu instance:
 
