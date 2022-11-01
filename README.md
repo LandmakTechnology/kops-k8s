@@ -22,7 +22,7 @@
 #!/bin/bash
 # 1) Create Ubuntu EC2 instance in AWS
 
-# 2a) create kops user
+## 2a) create kops user
 `` sh
  sudo adduser kops
  sudo echo "kops  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/kops
@@ -30,6 +30,7 @@
  ```
  
  ## 2a) install AWSCLI
+ 
  ``sh
  sudo apt update -y
  sudo apt install unzip wget -y
