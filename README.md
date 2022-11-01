@@ -31,7 +31,7 @@
  
  ## 2a) install AWSCLI
  
- ``sh
+ ```sh
  sudo apt update -y
  sudo apt install unzip wget -y
  sudo curl https://s3.amazonaws.com/aws-cli/awscli-bundle.zip -o awscli-bundle.zip
