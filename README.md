@@ -124,7 +124,7 @@ sudo service sshd restart
 sudo passwd ubuntu
 ```
 
-# 11) To list nodes
+# 11c) To list nodes
 
 	  kubectl get nodes 
  
