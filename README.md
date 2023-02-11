@@ -20,7 +20,7 @@
 7. KOPS is IaaC
 
 #!/bin/bash
-# 1) Create Ubuntu EC2 instance in AWS
+## 1) Create Ubuntu EC2 instance in AWS
 
 ## 2a) create kops user
 ``` sh
@@ -79,7 +79,7 @@ You Created. --> Save.
  
       source .bashrc  
 	
-# 7) Create sshkeys before creating cluster
+### 7) Create sshkeys before creating cluster
 ```sh
     ssh-keygen
  ```
