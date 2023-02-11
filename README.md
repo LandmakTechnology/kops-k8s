@@ -1,9 +1,9 @@
-# kops-kubernetes-cluster-configuration
-# Landmark Technologies,  -    Landmark Technologies 
-# Tel: +1 437 215 2483,   -     +1 437 215 2483 
-# mylandmarktech@gaIL.com,  -    www.mylandmarktech.com 
+## kops-kubernetes-cluster-configuration
+## Landmark Technologies,  -    Landmark Technologies 
+## Tel: +1 437 215 2483,   -     +1 437 215 2483 
+## mylandmarktech@gaIL.com,  -    www.mylandmarktech.com 
 
-# Setting up Kubernetes (K8s) Cluster on AWS Using KOPS
+## Setting up Kubernetes (K8s) Cluster on AWS Using KOPS
 
 1.kops is a software use to create production ready k8s cluster in a cloud provider like AWS.
 
@@ -41,19 +41,19 @@
  sudo unzip awscli-bundle.zip
  sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
  ```
-# 3) Install kops software on an ubuntu instance by running the commands below:
+## 3) Install kops software on an ubuntu instance by running the commands below:
  	sudo apt install wget -y
  	sudo wget https://github.com/kubernetes/kops/releases/download/v1.22.0/kops-linux-amd64
  	sudo chmod +x kops-linux-amd64
  	sudo mv kops-linux-amd64 /usr/local/bin/kops
  
-# 4) Install kubectl kubernetes client if it is not already installed
+## 4) Install kubectl kubernetes client if it is not already installed
 ```sh
  sudo curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
  sudo chmod +x ./kubectl
  sudo mv ./kubectl /usr/local/bin/kubectl
 ```
-# 5) Create an IAM role from AWS Console or CLI with the below Policies. 
+## 5) Create an IAM role from AWS Console or CLI with the below Policies. 
 
 	AmazonEC2FullAccess 
 	AmazonS3FullAccess
@@ -63,12 +63,12 @@
 Then Attach IAM role to ubuntu server from Console Select KOPS Server --> Actions --> Instance Settings --> Attach/Replace IAM Role --> Select the role which
 You Created. --> Save.
 
-# 6) create an S3 bucket
-# Execute the commands below in your KOPS control Server. use unique s3 bucket name. If you get bucket name exists error.
+## 6) create an S3 bucket
+## Execute the commands below in your KOPS control Server. use unique s3 bucket name. If you get bucket name exists error.
 	aws s3 mb s3://class30kops
 	aws s3 ls # to verify
 	
- # 6b) create an S3 bucket    
+ ## 6b) create an S3 bucket    
 	Expose environment variable:
     # Add env variables in bashrc
     
