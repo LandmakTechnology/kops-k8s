@@ -28,10 +28,12 @@
  sudo echo "kops  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/kops
  sudo su - kops
  ```
- ##  2a) install AWSCLI
+ ##  2a) install AWSCLI using the apt package manager
   ```sh
  sudo apt install awscli -y 
- #or
+ ```
+ ## or 2b) install AWSCLI using the script below
+ ```sh
  sudo apt update -y
  sudo apt install unzip wget -y
  sudo curl https://s3.amazonaws.com/aws-cli/awscli-bundle.zip -o awscli-bundle.zip
@@ -39,70 +41,62 @@
  sudo unzip awscli-bundle.zip
  sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
  ```
-# 3) Install kops software on ubuntu instance:
-
- 	#Install wget if not installed
+# 3) Install kops software on an ubuntu instance by running the commands below:
  	sudo apt install wget -y
  	sudo wget https://github.com/kubernetes/kops/releases/download/v1.22.0/kops-linux-amd64
  	sudo chmod +x kops-linux-amd64
  	sudo mv kops-linux-amd64 /usr/local/bin/kops
  
-# 4) Install kubectl
+# 4) Install kubectl kubernetes client if it is not already installed
 ```sh
  sudo curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
  sudo chmod +x ./kubectl
  sudo mv ./kubectl /usr/local/bin/kubectl
 ```
-# 5) Create an IAM role from AWS Console or CLI with below Policies.
+# 5) Create an IAM role from AWS Console or CLI with the below Policies. 
 
 	AmazonEC2FullAccess 
 	AmazonS3FullAccess
 	IAMFullAccess 
 	AmazonVPCFullAccess
 
-
 Then Attach IAM role to ubuntu server from Console Select KOPS Server --> Actions --> Instance Settings --> Attach/Replace IAM Role --> Select the role which
 You Created. --> Save.
 
-
-
 # 6) create an S3 bucket
 # Execute the commands below in your KOPS control Server. use unique s3 bucket name. If you get bucket name exists error.
-
-	aws s3 mb s3://class29v
-	aws s3 ls
+	aws s3 mb s3://class30kops
+	aws s3 ls # to verify
 	
-    ex: s3://class29v
-     
+ # 6b) create an S3 bucket    
 	Expose environment variable:
-
     # Add env variables in bashrc
-    vi .bashrc
-	
+    
+       vi .bashrc
 	# Give Unique Name And S3 Bucket which you created.
-	export NAME=class.k8s.local
-	export KOPS_STATE_STORE=s3://class29v
+	export NAME=class30.k8s.local
+	export KOPS_STATE_STORE=s3://class30kops
  
-    source .bashrc
+      source .bashrc  
 	
 # 7) Create sshkeys before creating cluster
-
+```sh
     ssh-keygen
- 
+ ```
 
 # 8) Create kubernetes cluster definitions on S3 bucket
+```sh
+kops create cluster --zones us-east-2c --networking weave --master-size t2.medium --master-count 1 --node-size t2.medium --node-count=2 ${NAME}
+# copy the sshkey into your cluster	
+kops create secret --name ${NAME} sshpublickey admin -i ~/.ssh/id_rsa.pub
+```
+# 9) Initialise your kops kubernetes cluser by running the command below
+```sh
+kops update cluster ${NAME} --yes
+```
+# 10a) Validate your cluster(KOPS will take some time to create cluster ,Execute below commond after 3 or 4 mins)
 
-	kops create cluster --zones us-east-2c --networking weave --master-size t2.medium --master-count 1 --node-size t2.medium --node-count=2 ${NAME}
-	
-	kops create secret --name ${NAME} sshpublickey admin -i ~/.ssh/id_rsa.pub
-
-# 9) Create kubernetes cluser
-
-	 kops update cluster ${NAME} --yes
-
-# 10) Validate your cluster(KOPS will take some time to create cluster ,Execute below commond after 3 or 4 mins)
-
-	   kops validate cluster
+kops validate cluster
 	   
 	   Suggestions:
  * validate cluster: kops validate cluster --wait 10m
