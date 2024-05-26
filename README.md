@@ -78,8 +78,8 @@ You Created. --> Save.
 	
 ### 7) Create sshkeys before creating cluster
 ```sh
-    ssh-keygen
- ```
+ssh-keygen -t rsa -b 4096
+```
 
 # 8) Create kubernetes cluster definitions on S3 bucket
 ```sh
