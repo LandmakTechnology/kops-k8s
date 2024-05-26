@@ -34,12 +34,9 @@
  ```
  ## or 2b) install AWSCLI using the script below
  ```sh
- sudo apt update -y
- sudo apt install unzip wget -y
- sudo curl https://s3.amazonaws.com/aws-cli/awscli-bundle.zip -o awscli-bundle.zip
- sudo apt install unzip python -y
- sudo unzip awscli-bundle.zip
- sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
  ```
 ## 3) Install kops software on an ubuntu instance by running the commands below:
  	sudo apt install wget -y
