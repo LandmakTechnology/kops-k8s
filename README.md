@@ -22,7 +22,7 @@
 #!/bin/bash
 ## 1) Create Ubuntu EC2 instance in AWS
 
-## 2a) create kops user
+## 2a) create kops user and add user to the sudoers group
 ``` sh
  sudo adduser kops
  sudo echo "kops  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/kops
